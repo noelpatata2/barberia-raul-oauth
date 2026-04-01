@@ -2,6 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Redirigiendo...</title>
 <style>body{font-family:sans-serif;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;margin:0;background:#1A1A2E;color:white;text-align:center;padding:20px;}a{display:inline-block;color:white;background:#0F3460;padding:16px 32px;border-radius:12px;text-decoration:none;margin-top:20px;font-size:18px;}</style>
 </head>
@@ -9,6 +12,12 @@
 <p id="msg">Autenticacion completada.</p>
 <a id="link" style="display:none">Abrir Peluqueria de Raul</a>
 <script>
+// Limpiar caches del navegador
+if ('caches' in window) {
+  caches.keys().then(function(names) {
+    for (var i = 0; i < names.length; i++) { caches.delete(names[i]); }
+  });
+}
 var fragment = window.location.hash.substring(1);
 if (fragment) {
   var appUrl = "peluqueria-raul-app://oauth?" + fragment;
