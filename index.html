@@ -3,24 +3,21 @@
 <head>
 <meta charset="utf-8">
 <title>Redirigiendo...</title>
-<style>body{font-family:sans-serif;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;margin:0;background:#1A1A2E;color:white;text-align:center;padding:20px;}a{color:#3498DB;margin-top:20px;font-size:18px;}</style>
+<style>body{font-family:sans-serif;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;margin:0;background:#1A1A2E;color:white;text-align:center;padding:20px;}a{display:inline-block;color:white;background:#0F3460;padding:16px 32px;border-radius:12px;text-decoration:none;margin-top:20px;font-size:18px;}</style>
 </head>
 <body>
-<p id="msg">Redirigiendo a la aplicacion...</p>
+<p id="msg">Autenticacion completada.</p>
+<a id="link" style="display:none">Abrir Peluqueria de Raul</a>
 <script>
 var fragment = window.location.hash.substring(1);
 if (fragment) {
   var appUrl = "peluqueria-raul-app://oauth?" + fragment;
-  // Intentar redireccion automatica
-  window.location.replace(appUrl);
-  // Si no funciona, mostrar enlace manual despues de 2 segundos
-  setTimeout(function() {
-    document.getElementById("msg").innerHTML =
-      '<p>Si no se abrio la aplicacion automaticamente, pulsa el boton:</p>' +
-      '<a href="' + appUrl + '">Abrir Peluqueria de Raul</a>';
-  }, 2000);
+  var linkEl = document.getElementById("link");
+  linkEl.href = appUrl;
+  linkEl.style.display = "inline-block";
+  document.getElementById("msg").textContent = "Pulsa el boton para volver a la aplicacion:";
 } else {
-  document.getElementById("msg").innerHTML = "<p>Error: no se recibio el token. Cierra esta ventana e intentalo de nuevo.</p>";
+  document.getElementById("msg").textContent = "Error: no se recibio el token. Cierra esta ventana e intentalo de nuevo.";
 }
 </script>
 </body>
