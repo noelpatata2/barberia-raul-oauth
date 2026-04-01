@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirigiendo...</title>
+<style>body{font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#1A1A2E;color:white;}</style>
+</head>
+<body>
+<p>Redirigiendo a la aplicacion...</p>
+<script>
+var fragment = window.location.hash.substring(1);
+if (fragment) {
+  window.location.href = "peluqueria-raul-app://oauth?" + fragment;
+} else {
+  document.body.innerHTML = "<p>Error: no se recibio el token. Cierra esta ventana e intentalo de nuevo.</p>";
+}
+</script>
+</body>
+</html>
